@@ -76,3 +76,11 @@ Most internet project get imputs from their community to enhance their internati
 * or RememberTheMilk (see [http://www.rememberthemilk.com/services/translate/](http://www.rememberthemilk.com/services/translate/)
 
 The Joomla community is an powerful source of suggestions of translations.
+
+#### The challenges
+Below you can find some of the already identified needs that the tool should/could solve:
+- the tool should help to automate the releases of language packages and sends them to the download page, language update servers...
+- the tool should help to warn translators (maybe e-mail them) when new strings when the main en-GB files get changed in the blessed repository
+- the tool could be flexible enough that allows translators to work with their preferred translation tool: com_localise, transifex, crowdin...
+- the tool could be Git based, but on it's base,  not in it's interface (because translators are not necessarily developers)
+- and maybe, the tool could become something that can be used too by 3rd party extension developers to want to get support from the Joomla community translating their open source solutions. Something like JED, maybe?
