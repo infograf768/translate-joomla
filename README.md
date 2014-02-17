@@ -84,3 +84,27 @@ Below you can find some of the already identified needs that the tool should/cou
 - the tool could be flexible enough that allows translators to work with their preferred translation tool: com_localise, transifex, crowdin...
 - the tool could be Git based, but on it's base,  not in it's interface (because translators are not necessarily developers)
 - and maybe, the tool could become something that can be used too by 3rd party extension developers to want to get support from the Joomla community translating their open source solutions. Something like JED, maybe?
+
+## Related topics
+
+### Standard ISO codes for naming language packages
+
+The official link concerning Country codes is: https://www.iso.org/obp/ui/#search
+
+Joomla uses alpha-2 codes: 
+
+CS was the official country code of Tchecoslovakia BEFORE it was separated into the Czeck Republic (CZ) and Slovakia(SK)
+
+Our Lang tags are composed of 2 parts:
+
+* the languagecode
+* the countrycode
+
+Here is the official list for language code: http://www.iso.org/iso/home/standards/language_codes.htm
+
+When possible we use the 2 letters language code, otherwise we use 3. For example we have for Joomla
+
+ckb-IQ for Kurdish Sorani
+
+srp-ME for Montenegrin
+
