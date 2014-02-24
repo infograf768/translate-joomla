@@ -92,6 +92,36 @@ Below you can find some of the already identified needs that the tool should/cou
 
 ## Related topics
 
+### Working with plurals
+Some languages like Russian do NOT have the same plurals as English. They need to add strins to fit their definitions. Joomla CMS provides a solution for it and it can be seen in the file localise.php added to the language package. For example:
+
+```php
+public static function getPluralSuffixes($count)
+	{
+		if ($count == 0) {
+			$return = array('0');
+		} else {
+			$return = array(($count%10==1 && $count%100!=11 ? '1' : ($count%10>=2 && $count%10<=4 && ($count%100<10 || $count%100>=20) ? '2' : 'MORE')));
+		}
+		return $return;
+	}
+```	
+
+As you see they also use _2
+
+```php
+COM_BANNERS_BANNERS_N_ITEMS_ARCHIVED="%d баннеров помещено в Архив"
+COM_BANNERS_BANNERS_N_ITEMS_ARCHIVED_1="%d баннер помещён в Архив"
+COM_BANNERS_BANNERS_N_ITEMS_ARCHIVED_2="%d баннера помещено в Архив"
+```
+
+However in English we only need
+
+```php
+COM_BANNERS_BANNERS_N_ITEMS_ARCHIVED="%d banners successfully archived"
+COM_BANNERS_BANNERS_N_ITEMS_ARCHIVED_1="%d banner successfully archived"
+````
+
 ### Standard ISO codes for naming language packages
 
 The official link concerning Country codes is: https://www.iso.org/obp/ui/#search
