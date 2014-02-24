@@ -85,6 +85,11 @@ Below you can find some of the already identified needs that the tool should/cou
 - the tool could be Git based, but on it's base,  not in it's interface (because translators are not necessarily developers)
 - and maybe, the tool could become something that can be used too by 3rd party extension developers to want to get support from the Joomla community translating their open source solutions. Something like JED, maybe?
 
+## Ideas sent by community members
+
+- @Hackwar idea on how could Joomla do translations: https://gist.github.com/Hackwar/9169564
+- @johnnydement presentation about translating Joomla in the Cloud age: https://github.com/joomla-projects/translate-joomla/blob/master/docs/ideas/translating-joomla-in-the-cloud-age.pdf
+
 ## Related topics
 
 ### Standard ISO codes for naming language packages
