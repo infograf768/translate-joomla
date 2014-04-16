@@ -92,6 +92,60 @@ Below you can find some of the already identified needs that the tool should/cou
 
 ## Related topics
 
+### Why we use .ini files instead of .po .mo
+
+INI files were choosen in 2006 for several reasons:
+
+1. There was no specific app to deal with .po on all platforms (Poedit was not available on Windows)
+2. Anyone, even without any code knowledge, could create/edit an ini file
+3. ini files are readable while .po are not
+
+
+but not only, and this is why it is better to go on:
+
+That is an example I picked from Wordpress of the code in a simple .php file (BTW WP does NOT use any plurals, as I could see in their .po files):
+
+```php
+get_current_screen()->add_help_tab( array(
+		'id'      => 'publish-box',
+		'title'   => __('Publish Settings'),
+		'content' => $publish_box,
+	) );
+
+	$discussion_settings  = '<p>' . __('<strong>Send Trackbacks</strong> - Trackbacks are a way to notify legacy blog systems that you&#8217;ve linked to them. Enter the URL(s) you want to send trackbacks. If you link to other WordPress sites they&#8217;ll be notified automatically using pingbacks, and this field is unnecessary.') . '</p>';
+	$discussion_settings .= '<p>' . __('<strong>Discussion</strong> - You can turn comments and pings on or off, and if there are comments on the post, you can see them here and moderate them.') . '</p>';
+
+	get_current_screen()->add_help_tab( array(
+		'id'      => 'discussion-settings',
+		'title'   => __('Discussion Settings'),
+		'content' => $discussion_settings,
+	) );
+} elseif ( 'page' == $post_type ) {
+	$page_attributes = '<p>' . __('<strong>Parent</strong> - You can arrange your pages in hierarchies. For example, you could have an &#8220;About&#8221; page that has &#8220;Life Story&#8221; and &#8220;My Dog&#8221; pages under it. There are no limits to how many levels you can nest pages.') . '</p>' .
+		'<p>' . __('<strong>Template</strong> - Some themes have custom templates you can use for certain pages that might have additional features or custom layouts. If so, you&#8217;ll see them in this dropdown menu.') . '</p>' .
+		'<p>' . __('<strong>Order</strong> - Pages are usually ordered alphabetically, but you can choose your own order by entering a number (1 for first, etc.) in this field.') . '</p>';
+
+	get_current_screen()->add_help_tab( array(
+		'id' => 'page-attributes',
+		'title' => __('Page Attributes'),
+		'content' => $page_attributes,
+	) );
+}
+```
+
+This for GetText
+
+```php
+__('<strong>Parent</strong> - You can arrange your pages in hierarchies. For example, you could have an &#8220;About&#8221; page that has &#8220;Life Story&#8221; and &#8220;My Dog&#8221; pages under it. There are no limits to how many levels you can nest pages.') 
+```
+
+It is simpler with ini files:
+
+```php
+JText::_("SOME_CONSTANT")
+```
+
+
 ### Working with plurals
 Some languages like Russian do NOT have the same plurals as English. They need to add strins to fit their definitions. Joomla CMS provides a solution for it and it can be seen in the file localise.php added to the language package. For example:
 
