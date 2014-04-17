@@ -99,6 +99,7 @@ INI files were choosen in 2006 for several reasons:
 1. There was no specific app to deal with .po on all platforms (Poedit was not available on Windows)
 2. Anyone, even without any code knowledge, could create/edit an ini file
 3. ini files are readable while .po are not
+4. You can't load more than one .pot file per page.
 
 
 but not only, and this is why it is better to go on:
@@ -149,7 +150,8 @@ JText::_("SOME_CONSTANT")
 ### Working with plurals
 Some languages like Russian do NOT have the same plurals as English. They need to add strins to fit their definitions. Joomla CMS provides a solution for it and it can be seen in the file localise.php added to the language package. For example:
 
-```php
+Concerning plurals, this is the Russian plural:
+```
 public static function getPluralSuffixes($count)
 	{
 		if ($count == 0) {
@@ -159,22 +161,56 @@ public static function getPluralSuffixes($count)
 		}
 		return $return;
 	}
-```	
-
-As you see they also use _2
-
-```php
-COM_BANNERS_BANNERS_N_ITEMS_ARCHIVED="%d баннеров помещено в Архив"
-COM_BANNERS_BANNERS_N_ITEMS_ARCHIVED_1="%d баннер помещён в Архив"
-COM_BANNERS_BANNERS_N_ITEMS_ARCHIVED_2="%d баннера помещено в Архив"
 ```
 
-However in English we only need
+An this is the Scottish gaelic one
+```
+public static function getPluralSuffixes($count) {
+		if ($count == 0 || $count > 19) {
+            $return =  array('0');
+        }
+        elseif($count == 1 || $count == 11) {
+               $return =  array('1');
+        }
+        elseif($count == 2 || $count == 12) {
+               $return =  array('2');
+	    }
+	    elseif(($count > 2 && $count < 12) || ($count > 12 && $count < 19)) {
+                $return =  array('FEW');
+		}
+		return $return;
+     }
+```
 
-```php
-COM_BANNERS_BANNERS_N_ITEMS_ARCHIVED="%d banners successfully archived"
-COM_BANNERS_BANNERS_N_ITEMS_ARCHIVED_1="%d banner successfully archived"
-````
+Now compare with en-GB:
+```
+public static function getPluralSuffixes($count) {
+		if ($count == 0) {
+			$return =  array('0');
+		}
+		elseif($count == 1) {
+			$return =  array('1');
+		}
+		else {
+			$return = array('MORE');
+		}
+		return $return;
+	}
+```
+
+This means that when we have in en-GB:
+```
+COM_BANNERS_BANNERS_N_ITEMS_CHECKED_IN_0="No banner successfully checked in"
+COM_BANNERS_BANNERS_N_ITEMS_CHECKED_IN_1="%d banner successfully checked in"
+COM_BANNERS_BANNERS_N_ITEMS_CHECKED_IN_MORE="%d banners successfully checked in"
+```
+In Russian they need:
+```
+COM_BANNERS_BANNERS_N_ITEMS_CHECKED_IN_0="Ни один баннер не был разблокирован"
+COM_BANNERS_BANNERS_N_ITEMS_CHECKED_IN_1="%d баннер успешно разблокирован"
+COM_BANNERS_BANNERS_N_ITEMS_CHECKED_IN_2="%d баннера успешно разблокировано"
+COM_BANNERS_BANNERS_N_ITEMS_CHECKED_IN_MORE="%d баннеров успешно разблокировано"
+```
 
 ### Standard ISO codes for naming language packages
 
